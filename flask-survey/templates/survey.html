@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Q = {{ query_key }}{% endblock %}
+{% block content %}
+<h1>{{ query.question }}</h1>
+
+<form action="/answer" method="POST">
+  <select name="answer_key">
+    {% for choice in query.choices %}
+      <option name="choice" value="{{ choice }}">{{ choice }}</option>
+    {% endfor %}
+  </select>
+  {% if query.allow_text %}
+    <textarea name="text_input"></textarea>
+  {% endif %}
+
+  <button>Continue</button>
+</form>
+{% endblock %}
